@@ -1,0 +1,15 @@
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="50" viewBox="0 0 200 50">
+    <text x="0" y="25" font-family="Raleway" font-size="32">
+      <tspan class="letter" style="animation-delay: 0s;">C</tspan>
+      <tspan class="letter" style="animation-delay: 0.4s;">o</tspan>
+      <tspan class="letter" style="animation-delay: 0.7s;">d</tspan>
+      <tspan class="letter" style="animation-delay: 1.1s;">e</tspan>
+      <tspan class="letter" style="animation-delay: 1.5s;">P</tspan>
+      <tspan class="letter" style="animation-delay: 1.8s;">e</tspan>
+      <tspan class="letter" style="animation-delay: 2.2s;">n</tspan>
+      <tspan class="letter" style="animation-delay: 2.3s;"> </tspan>
+      <tspan class="letter" style="animation-delay: 2.5s;">G</tspan>
+      <tspan class="letter" style="animation-delay: 2.8s;">P</tspan>
+      <tspan class="letter" style="animation-delay: 3.1s;">T</tspan>
+    </text>
+  </svg>

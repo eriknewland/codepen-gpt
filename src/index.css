@@ -1,13 +1,317 @@
+/* Globals */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Raleway', sans-serif;
+  background-color: hsl(225, 6%, 25%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  0%, 50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 100%;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Editor Components */
+
+.top-pane {
+  background-color: hsl(225, 6%, 25%);
+  padding-bottom: 1rem
+}
+
+.editor-container {
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  background-color: hsl(225, 6%, 25%);
+  height: 100%
+}
+
+.editor-title {
+  display: flex;
+  justify-content: space-between;
+  background-color: hsl(225, 6%, 13%);
+  color: white;
+  padding: .5rem .5rem .5rem 1rem;
+  border-radius: .5rem .5rem 0 0;
+  /* text-transform: uppercase; */
+  font-family: monospace;
+}
+
+.pane {
+  height: 50vh;
+  display: flex;
+}
+
+/* iFrame */
+
+iframe {
+  background-color: white;
+}
+
+/* CodeMirror CSS */
+.codemirror-window {
+  height: 100%;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+  max-width: 40vw;
+  max-height: 44vh;
+}
+
+/* Note: CodeMirror6 refers to classes via 'cm' */
+.cm-editor {
+  height: 100%;
+  border-radius: 0 0 10px 10px;
+  overflow-wrap: break-word;
+}
+
+.cm-scroller {
+  border-radius: 0 0 10px 10px;
+}
+
+.cm {
+  height: 100% !important;
+}
+
+.cm-content {
+  overflow-wrap: break-word;
+  white-space: pre-wrap
+}
+
+
+/* Remove Focus */
+.cm-editor.cm-focused {
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+  overflow-wrap: break-word;
+}
+
+/* React Joyride */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Header Section */
+textarea {
+  /* width: 100%; */
+  max-width: 500px;
+  min-height: 100px;
+  padding: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  resize: vertical;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  resize: none;
+}
+
+textarea:focus {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.16), 0 6px 12px rgba(0, 0, 0, 0.23);
+}
+
+header {
+  background-color: hsl(225, 6%, 25%);
+  color: white;
+}
+
+
+button.api-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #333;
+  color: #ccc;
+  width: 200px;
+  height: 60px;
+  border: 0;
+  font-size: 18px;
+  border-radius: 4px;
+  font-family: 'Raleway', sans-serif;
+  transition: .6s;
+  overflow: hidden;
+}
+
+.api-button-text {
+  position: relative;
+  z-index: 1;
+  margin-right: .95rem;
+}
+
+button.api-button:focus {
+  outline: 0;
+}
+button.api-button:before {
+  content: '';
+  display: block;
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+  width: 60px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: .5;
+  filter: blur(30px);
+  transform: translateX(-100px) skewX(-15deg);
+}
+button.api-button:after {
+  content: '';
+  display: block;
+  position: relative;
+  background: rgba(255, 255, 255, 0.2);
+  width: 30px;
+  height: 100%;
+  left: 30px;
+  top: 0;
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100px) skewX(-15deg);
+}
+button.api-button:hover {
+  background: #338033;
+  cursor: pointer;
+}
+button.api-button:hover:before {
+  transform: translateX(300px) skewX(-15deg);
+  opacity: 0.6;
+  transition: .7s;
+}
+button.api-button:hover:after {
+  transform: translateX(300px) skewX(-15deg);
+  opacity: 1;
+  transition: .7s;
+}
+
+ h3 {
+  cursor: pointer;
+ }
+
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.0);
+  border-left-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+}
+
+/* SVG Title */
+
+.letter {
+  stroke: white;
+  stroke-width: 2;
+  stroke-dasharray: 100%;
+  stroke-dashoffset: 100%;
+  fill: none;
+  animation: draw 1s forwards;
+}
+
+/* RainbowBracket Overrides */
+
+.rainbow-bracket-red > span {
+  /* Your styles here */
+  color: red;
+}
+
+.rainbow-bracket-orange > span {
+  /* Your styles here */
+  color: orange;
+}
+
+.rainbow-bracket-yellow > span {
+  /* Your styles here */
+  color: yellow;
+}
+
+.rainbow-bracket-green > span {
+  /* Your styles here */
+  color: green;
+}
+
+.rainbow-bracket-blue > span {
+  /* Your styles here */
+  color: blue;
+}
+
+.rainbow-bracket-indigo > span {
+  /* Your styles here */
+  color: indigo;
+}
+
+.rainbow-bracket-violet > span {
+  /* Your styles here */
+  color: violet;
 }

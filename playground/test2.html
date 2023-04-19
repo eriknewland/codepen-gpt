@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+  <style>
+    @keyframes draw {
+      from {
+        stroke-dashoffset: 100%;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .letter {
+      stroke: black;
+      stroke-width: 2;
+      stroke-dasharray: 100%;
+      stroke-dashoffset: 100%;
+      fill: none;
+      animation: draw 1s forwards;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="50" viewBox="0 0 200 50">
+    <text x="0" y="25" font-family="Raleway" font-size="32">
+      <tspan class="letter" style="animation-delay: 0s;">C</tspan>
+      <tspan class="letter" style="animation-delay: 0.4s;">o</tspan>
+      <tspan class="letter" style="animation-delay: 0.7s;">d</tspan>
+      <tspan class="letter" style="animation-delay: 1.1s;">e</tspan>
+      <tspan class="letter" style="animation-delay: 1.5s;">P</tspan>
+      <tspan class="letter" style="animation-delay: 1.8s;">e</tspan>
+      <tspan class="letter" style="animation-delay: 2.2s;">n</tspan>
+      <tspan class="letter" style="animation-delay: 2.3s;"> </tspan>
+      <tspan class="letter" style="animation-delay: 2.5s;">G</tspan>
+      <tspan class="letter" style="animation-delay: 2.8s;">P</tspan>
+      <tspan class="letter" style="animation-delay: 3.1s;">T</tspan>
+    </text>
+  </svg>
+</body>
+</html>

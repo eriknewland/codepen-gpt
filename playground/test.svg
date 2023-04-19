@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+  <text x="0" y="25" font-family="Raleway" font-size="24" fill="white">
+    <tspan x="0" dy="0">
+      C
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0s" fill="freeze" />
+    </tspan>
+    <tspan x="20" dy="0">
+      o
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.5s" fill="freeze" />
+    </tspan>
+    <!-- Add more tspans and animate elements for each letter -->
+  </text>
+</svg>
