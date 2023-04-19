@@ -3,7 +3,7 @@
 # CodePen GPT
 ---
 
-CodePen GPT is a powerful React Single Page Application (SPA) that integrates OpenAI's API to generate code snippets based on user input. The generated code is then placed into CodeMirror editors, allowing users to quickly test and demo their code in real-time. The output is displayed in an i-frame, providing a seamless experience similar to popular platforms like CodePen and Code Sandbox.
+CodePen GPT is a powerful React Single Page Application (SPA) that integrates OpenAI's API to generate code snippets based on user input. The generated code is then placed into CodeMirror editors, allowing users to quickly test and demo their code in real-time. The output is displayed in an i-frame, providing a seamless experience similar to popular platforms like CodePen and Code Sandbox..
 
 ![CodePen GPT Demo](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjNhN2I4ZTVhMDUxOTE1NjkyZmRkYzEzOTY4ODcyYjUxNzE1NzA0MiZjdD1n/6YG8irt0mUWZEYY114/giphy.gif)
 
