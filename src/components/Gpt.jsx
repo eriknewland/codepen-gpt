@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
 const API_KEY = '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';
