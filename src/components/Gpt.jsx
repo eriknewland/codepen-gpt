@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-const API_KEY = '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';
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
 
 function GptGenerator({ setHTML, setCSS, setJS }) {
@@ -33,7 +33,7 @@ function GptGenerator({ setHTML, setCSS, setJS }) {
       .then((response) => response.json())
       .then((data) => {
         const codeString = data.choices[0].message.content;
-        console.log(`total cost: $${(0.72 + (data.usage.total_tokens * 0.06)) / 1000} USD`);
+        // console.log(`total cost: $${(0.72 + (data.usage.total_tokens * 0.06)) / 1000} USD`);
         setCost((prevCost) => prevCost + ((data.usage.total_tokens * 0.06) / 1000));
         // console.log('complete answer:', data.choices[0].message.content);
         const htmlCode = codeString.match(htmlRegex)[1];
@@ -48,6 +48,7 @@ function GptGenerator({ setHTML, setCSS, setJS }) {
         setIsLoading(false);
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.error(error);
         setIsLoading(false);
       });

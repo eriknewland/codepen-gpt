@@ -10,6 +10,7 @@ import { EditorView } from '@codemirror/view';
 import { linter, lintGutter } from '@codemirror/lint';
 import Linter from 'eslint4b';
 // import * as themes from '@uiw/codemirror-themes-all';
+import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io';
 import rainbowBrackets from '../extensions/useRainbowBrackets';
 
 function CodeMirrorComponent({ language, value, handleChange }) {
@@ -54,11 +55,23 @@ function CodeMirrorComponent({ language, value, handleChange }) {
     handleChange(val);
   }, [handleChange]);
 
+  const iconHandler = (lang) => {
+    if (lang === 'html') {
+      return <IoLogoHtml5 size={48} color="#e34f26" />;
+    }
+    if (lang === 'css') {
+      return <IoLogoCss3 size={48} color="#1572B6" />;
+    }
+    if (lang === 'javascript') {
+      return <IoLogoJavascript size={48} color="#F7DF1E" />;
+    }
+  };
+
   return (
     <div className="editor-container">
       <div className="editor-title">
-        {language}
-        <button type="button">O/C</button>
+        <span>{language}</span>
+        {iconHandler(language)}
       </div>
       <CodeMirror
         className="codemirror-window"
