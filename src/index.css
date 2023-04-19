@@ -70,7 +70,7 @@ body {
   flex-direction: column;
   padding: .5rem;
   background-color: hsl(225, 6%, 25%);
-  height: 100%
+  max-height: 40vh;
 }
 
 .editor-title {

@@ -66,6 +66,5 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "gh-pages": "^5.0.0",
     "react-app-rewired": "^2.2.1"
-  },
-  "homepage": "https://eriknewland.github.io/codepen-gpt"
+  }
 }

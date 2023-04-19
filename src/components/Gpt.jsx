@@ -1,13 +1,24 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-
-const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
-const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
 
 function GptGenerator({ setHTML, setCSS, setJS }) {
   const [instructions, setInstructions] = useState('');
   const [cost, setCost] = useState(0.72 / 1000);
   const [isLoading, setIsLoading] = useState(false);
+
+  // async function getOpenAiApiKey() {
+  //   try {
+  //     const response = await fetch('/.netlify/functions/getOpenAiApiKey');
+  //     const data = await response.json();
+  //     return data.apiKey;
+  //   } catch (error) {
+  //     console.error('Error fetching OpenAI API Key:', error);
+  //   }
+  // }
+
+  // const API_KEY = getOpenAiApiKey();
+  const API_ENDPOINT = 'https://api.openai.com/v1/chat/completions';
 
   const htmlRegex = /```html\n([\s\S]*?)\n```/;
   const cssRegex = /```css\n([\s\S]*?)\n```/;
@@ -15,33 +26,42 @@ function GptGenerator({ setHTML, setCSS, setJS }) {
 
   function callAPI() {
     setIsLoading(true);
-    const completionRequest = {
-      model: 'gpt-4',
-      messages: [{ role: 'system', content: 'You are CodeGPT, an AI that translates instructions into code. You will always split the code you return into 3 segments: the html code (body section only), the css, and the javascript.' },
-        { role: 'user', content: instructions }],
-      max_tokens: 2000,
-      temperature: 0.05,
-    };
-    fetch(API_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify(completionRequest),
-    })
+
+    fetch('/.netlify/functions/getOpenAiApiKey')
+      .then((response) => response.json())
+      .then((data) => {
+        const API_KEY = data.apiKey;
+
+        const completionRequest = {
+          model: 'gpt-4',
+          messages: [
+            {
+              role: 'system',
+              content:
+                'You are CodeGPT, an AI that translates instructions into code. You will always split the code you return into 3 segments: the html code (body section only), the css, and the javascript.',
+            },
+            { role: 'user', content: instructions },
+          ],
+          max_tokens: 2000,
+          temperature: 0.05,
+        };
+
+        return fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          body: JSON.stringify(completionRequest),
+        });
+      })
       .then((response) => response.json())
       .then((data) => {
         const codeString = data.choices[0].message.content;
-        // console.log(`total cost: $${(0.72 + (data.usage.total_tokens * 0.06)) / 1000} USD`);
-        setCost((prevCost) => prevCost + ((data.usage.total_tokens * 0.06) / 1000));
-        // console.log('complete answer:', data.choices[0].message.content);
+        setCost((prevCost) => prevCost + (data.usage.total_tokens * 0.06) / 1000);
         const htmlCode = codeString.match(htmlRegex)[1];
         const cssCode = codeString.match(cssRegex)[1];
         const jsCode = codeString.match(jsRegex)[1];
-        // console.log('HTML Code:', htmlCode);
-        // console.log('CSS Code:', cssCode);
-        // console.log('JavaScript Code:', jsCode);
         setHTML(htmlCode);
         setCSS(cssCode);
         setJS(jsCode);
