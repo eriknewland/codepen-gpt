@@ -22,10 +22,10 @@ jobs:
           npm ci
           npm run build
         env:
-          REACT_APP_OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
+          REACT_APP_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_PAGES_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
