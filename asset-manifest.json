@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/codepen-gpt/static/css/main.161cb715.css",
-    "main.js": "/codepen-gpt/static/js/main.ad1688ca.js",
-    "static/media/title.svg": "/codepen-gpt/static/media/title.63d5ad3d1ba291c644bcd6320404b53b.svg",
-    "index.html": "/codepen-gpt/index.html",
-    "main.161cb715.css.map": "/codepen-gpt/static/css/main.161cb715.css.map",
-    "main.ad1688ca.js.map": "/codepen-gpt/static/js/main.ad1688ca.js.map"
+    "main.css": "/static/css/main.777f5758.css",
+    "main.js": "/static/js/main.6957574f.js",
+    "static/media/title.svg": "/static/media/title.63d5ad3d1ba291c644bcd6320404b53b.svg",
+    "index.html": "/index.html",
+    "main.777f5758.css.map": "/static/css/main.777f5758.css.map",
+    "main.6957574f.js.map": "/static/js/main.6957574f.js.map"
   },
   "entrypoints": [
-    "static/css/main.161cb715.css",
-    "static/js/main.ad1688ca.js"
+    "static/css/main.777f5758.css",
+    "static/js/main.6957574f.js"
   ]
 }
