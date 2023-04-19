@@ -1,3 +1,10 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Replace 'main' with the name of your default branch, if different
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
