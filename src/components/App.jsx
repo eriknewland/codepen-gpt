@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../index.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Joyride from 'react-joyride';
@@ -18,6 +18,7 @@ function App() {
   const [run, setRun] = useState(false);
   const [theme, setTheme] = useState(allThemes[18]);
   const [isOpen, setIsOpen] = useState(false);
+  const selectContainerRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -62,13 +63,7 @@ function App() {
         <html>
           <body>${html}</body>
           <style>${css}</style>
-          <script>
-          window.onerror = function(message, source, lineno, colno, error) {
-            window.parent.postMessage({ type: 'iframeError', message, source, lineno, colno, error }, '*');
-            return true;
-          };
-          ${js}
-        </script>
+          <script>${js}</script>
         </html>
       `);
     }, 250);
@@ -104,6 +99,24 @@ function App() {
     }
   }, []);
 
+  const handleClickOutside = (event) => {
+    if (selectContainerRef.current && !selectContainerRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <>
       <header style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -123,7 +136,7 @@ function App() {
               </h3>
             ) : null}
           <h3 style={{ color: 'white', marginTop: '5rem' }}>Theme</h3>
-          <div className="select-container" style={{ color: 'black' }}>
+          <div ref={selectContainerRef} className="select-container" style={{ color: 'black' }}>
             <div tabIndex={0} role="button" className={`custom-select ${isOpen ? 'open' : ''}`} onKeyPress={toggleDropdown} onClick={toggleDropdown} style={{ color: 'black' }}>
               <div className="selected-option" data-value={theme.name} style={{ color: 'black' }}>
                 {theme.name}
