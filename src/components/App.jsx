@@ -108,7 +108,7 @@ function App() {
     <>
       <header style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
-          <h1 style={{ marginTop: 'auto', marginBottom: 'auto' }}><Svg /></h1>
+          <h1 style={{ marginTop: 'auto', marginBottom: 'auto', position: 'absolute' }}><Svg /></h1>
           {js || html || css
             ? (
               <h3
@@ -122,7 +122,7 @@ function App() {
                 download your pen
               </h3>
             ) : null}
-          <h3 style={{ color: 'white' }}>Theme</h3>
+          <h3 style={{ color: 'white', marginTop: '5rem' }}>Theme</h3>
           <div className="select-container" style={{ color: 'black' }}>
             <div tabIndex={0} role="button" className={`custom-select ${isOpen ? 'open' : ''}`} onKeyPress={toggleDropdown} onClick={toggleDropdown} style={{ color: 'black' }}>
               <div className="selected-option" data-value={theme.name} style={{ color: 'black' }}>
