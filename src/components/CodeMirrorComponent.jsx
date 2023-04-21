@@ -2,18 +2,19 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import CodeMirror from '@uiw/react-codemirror';
-import { okaidia } from '@uiw/codemirror-theme-okaidia';
 import { javascript, esLint } from '@codemirror/lang-javascript';
 import { css } from '@codemirror/lang-css';
 import { html } from '@codemirror/lang-html';
 import { EditorView } from '@codemirror/view';
 import { linter, lintGutter } from '@codemirror/lint';
 import Linter from 'eslint4b';
-// import * as themes from '@uiw/codemirror-themes-all';
 import { IoLogoHtml5, IoLogoCss3, IoLogoJavascript } from 'react-icons/io';
-import rainbowBrackets from '../extensions/useRainbowBrackets';
+// import rainbowBrackets from '../extensions/useRainbowBrackets';
+import rainbowBrackets from 'rainbowbrackets';
 
-function CodeMirrorComponent({ language, value, handleChange }) {
+function CodeMirrorComponent({
+  language, value, handleChange, theme,
+}) {
   function langChoice() {
     if (language === 'html') return html();
     if (language === 'css') return css();
@@ -80,7 +81,7 @@ function CodeMirrorComponent({ language, value, handleChange }) {
           langChoice(), EditorView.lineWrapping, lintGutter(), linter(esLint(new Linter(), config)),
         ]}
         onChange={onChange}
-        theme={okaidia}
+        theme={theme.value}
       />
     </div>
   );

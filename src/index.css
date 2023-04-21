@@ -280,38 +280,103 @@ button.api-button:hover:after {
 }
 
 /* RainbowBracket Overrides */
-
+/*
 .rainbow-bracket-red > span {
-  /* Your styles here */
   color: red;
 }
 
 .rainbow-bracket-orange > span {
-  /* Your styles here */
   color: orange;
 }
 
 .rainbow-bracket-yellow > span {
-  /* Your styles here */
   color: yellow;
 }
 
 .rainbow-bracket-green > span {
-  /* Your styles here */
   color: green;
 }
 
 .rainbow-bracket-blue > span {
-  /* Your styles here */
   color: blue;
 }
 
 .rainbow-bracket-indigo > span {
-  /* Your styles here */
   color: indigo;
 }
 
 .rainbow-bracket-violet > span {
-  /* Your styles here */
   color: violet;
+} */
+
+
+.select-container {
+  position: relative;
+  width: 200px;
+  margin: 1rem;
+}
+
+.custom-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.selected-option {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.options-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  visibility: hidden;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.custom-select.open .options-container {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #f0f0f0;
+}
+
+.selected-option {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotated {
+  transform: rotate(180deg);
 }

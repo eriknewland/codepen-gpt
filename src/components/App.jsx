@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../index.css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Joyride from 'react-joyride';
+import { MdArrowDropDown } from 'react-icons/md';
 import CodeMirrorComponent from './CodeMirrorComponent';
 import GptGenerator from './Gpt';
 import handleDownload from '../helpers/handleDownload';
 import { ReactComponent as Svg } from './title.svg';
+import allThemes from '../constants/themes';
 
 function App() {
   const [html, setHTML] = useState('');
@@ -14,6 +16,18 @@ function App() {
   const [srcDoc, setSrcDoc] = useState('');
   const [steps, setSteps] = useState([]);
   const [run, setRun] = useState(false);
+  const [theme, setTheme] = useState(allThemes[18]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (e) => {
+    const selectedTheme = allThemes.find((t) => t.name === e.target.dataset.value);
+    setTheme(selectedTheme);
+    toggleDropdown();
+  };
 
   const handleJoyrideCallback = (data) => {
     if (data.action === 'close') {
@@ -108,15 +122,39 @@ function App() {
                 download your pen
               </h3>
             ) : null}
+          <h3 style={{ color: 'white' }}>Theme</h3>
+          <div className="select-container" style={{ color: 'black' }}>
+            <div tabIndex={0} role="button" className={`custom-select ${isOpen ? 'open' : ''}`} onKeyPress={toggleDropdown} onClick={toggleDropdown} style={{ color: 'black' }}>
+              <div className="selected-option" data-value={theme.name} style={{ color: 'black' }}>
+                {theme.name}
+                <MdArrowDropDown className={`arrow-icon ${isOpen ? 'rotated' : ''}`} />
+              </div>
+              <div className="options-container">
+                {allThemes.map((t) => (
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    key={t.name}
+                    className="option"
+                    data-value={t.name}
+                    onClick={handleOptionClick}
+                    onKeyPress={handleOptionClick}
+                  >
+                    {t.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <div data-tour="gpt-generator" style={{ margin: '1rem' }}>
           <GptGenerator setHTML={setHTML} setCSS={setCSS} setJS={setJS} />
         </div>
       </header>
       <div className="pane top-pane" data-tour="code-mirror">
-        <CodeMirrorComponent handleChange={setHTML} value={html} language="html" />
-        <CodeMirrorComponent handleChange={setCSS} value={css} language="css" />
-        <CodeMirrorComponent handleChange={setJS} value={js} language="javascript" />
+        <CodeMirrorComponent handleChange={setHTML} value={html} language="html" theme={theme} />
+        <CodeMirrorComponent handleChange={setCSS} value={css} language="css" theme={theme} />
+        <CodeMirrorComponent handleChange={setJS} value={js} language="javascript" theme={theme} />
       </div>
       <div className="pane" data-tour="iframe">
         <iframe

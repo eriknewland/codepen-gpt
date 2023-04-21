@@ -1,0 +1,33 @@
+import * as themes from '@uiw/codemirror-themes-all';
+
+const allThemes = [
+  { name: 'abcdef', value: themes.abcdef },
+  { name: 'androidstudio', value: themes.androidstudio },
+  { name: 'atomone', value: themes.atomone },
+  { name: 'aura', value: themes.aura },
+  { name: 'bbedit', value: themes.bbedit },
+  { name: 'bespin', value: themes.bespin },
+  { name: 'darcula', value: themes.darcula },
+  { name: 'dracula', value: themes.dracula },
+  { name: 'duotoneLight', value: themes.duotoneLight },
+  { name: 'duotoneDark', value: themes.duotoneDark },
+  { name: 'eclipse', value: themes.eclipse },
+  { name: 'githubLight', value: themes.githubLight },
+  { name: 'githubDark', value: themes.githubDark },
+  { name: 'gruvboxLight', value: themes.gruvboxLight },
+  { name: 'gruvboxDark', value: themes.gruvboxDark },
+  { name: 'material', value: themes.material },
+  { name: 'noctisLilac', value: themes.noctisLilac },
+  { name: 'nord', value: themes.nord },
+  { name: 'okaidia', value: themes.okaidia },
+  { name: 'solarizedLight', value: themes.solarizedLight },
+  { name: 'solarizedDark', value: themes.solarizedDark },
+  { name: 'sublime', value: themes.sublime },
+  { name: 'tokyoNight', value: themes.tokyoNight },
+  { name: 'tokyoNightStorm', value: themes.tokyoNightStorm },
+  { name: 'tokyoNightDay', value: themes.tokyoNightDay },
+  { name: 'vscodeDark', value: themes.vscodeDark },
+  { name: 'xcodeDark', value: themes.xcodeDark },
+  { name: 'xcodeLight', value: themes.xcodeLight },
+];
+export default allThemes;
