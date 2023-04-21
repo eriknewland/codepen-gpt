@@ -113,7 +113,7 @@ function App() {
             ? (
               <h3
                 className="download-link"
-                style={{ textDecoration: 'underline' }}
+                style={{ textDecoration: 'underline', position: 'absolute', marginTop: '2rem' }}
                 onKeyPress={() => handleDownload(downloadPen)}
                 onClick={() => handleDownload(downloadPen)}
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
